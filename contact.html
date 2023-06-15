@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>iCoder Insight - Unveiling the Secrets of Successful Coding</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <title>Responsive Form</title>
+    <style>
+      body {
+        background-color: rgb(211, 211, 211);
+      }
+
+      .form-container {
+        background-color: #f8f8f8;
+        padding: 20px;
+        margin: 50px auto;
+        max-width: 400px;
+        border-radius: 5px;
+      }
+
+      .error-message {
+        color: rgb(196, 31, 31);
+      }
+
+      /* Modal styles */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .modal-content {
+        background-color: #fefefe;
+        margin: 10% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+      }
+
+      .modal-close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .modal-close:hover,
+      .modal-close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .modal-success-icon {
+        text-align: center;
+        font-size: 48px;
+        margin-bottom: 20px;
+      }
+
+      .modal-success-text {
+        text-align: center;
+        font-size: 24px;
+        color: green;
+        margin-bottom: 20px;
+      }
+
+      @media screen and (max-width: 600px) {
+        .modal-content {
+          width: 95%;
+        }
+      }
+    </style>
+  </head>
+
+  <body style="background-color: rgb(211, 211, 211)">
+    <!-- 
+            Source.unsplash.com <--- Free Images Site
+
+            https://source.unsplash.com/1600x900/?nature,water 
+
+            -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/index.html">iCoder Insight</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/about.html">About</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Topics
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Technology</a></li>
+                <li><a class="dropdown-item" href="#">Web Development</a></li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Support</a>
+                  <a class="dropdown-item" href="#">Write for us</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/contact.html">Contact Us</a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <div class="form-container">
+      <form id="myForm" onsubmit="validateForm(event)">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            placeholder="Enter your name"
+          />
+          <p class="error-message" id="nameError"></p>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="Enter your email"
+          />
+          <p class="error-message" id="emailError"></p>
+        </div>
+        <div class="form-group">
+          <label for="query">Query Type:</label>
+          <select class="form-control" id="query">
+            <option value="">Select query type</option>
+            <option value="front-end engineer">Front-End Engineer</option>
+            <option value="back-end enginee">Back-End Enginee</option>
+            <option value="full-stack engineer">Full-Stack Engineer</option>
+            <option value="mobile app developer">Mobile App Developer</option>
+            <option value="game developer">Game Developer</option>
+            <option value="security engineer">Security Engineer</option>
+            <option value="devops engineer">DevOps Engineer</option>
+            <option value="uiux">UI/UX</option>
+            <option value="other">Other</option>
+          </select>
+          <p class="error-message" id="queryError"></p>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea
+            class="form-control"
+            id="message"
+            rows="3"
+            placeholder="Enter your message"
+          ></textarea>
+          <p class="error-message" id="messageError"></p>
+        </div>
+        <div class="form-group">
+          <label for="member">Are you a member?</label>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="member"
+              id="yes"
+              value="yes"
+            />
+            <label class="form-check-label" for="yes">Yes</label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="member"
+              id="no"
+              value="no"
+            />
+            <label class="form-check-label" for="no">No</label>
+          </div>
+          <p class="error-message" id="memberError"></p>
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+      </form>
+      <p class="error-message" id="errorMessage"></p>
+    </div>
+
+    <!-- Modal -->
+    <div id="successModal" class="modal">
+      <div class="modal-content">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <div class="modal-success-icon">&#10004;</div>
+        <div class="modal-success-text">
+          Your Form is Successfully Submitted!
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer bg-dark text-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 my-4">
+            <h3>About iCoder Insights</h3>
+            <p>
+              iCoder Insights is a leading technology blog that provides
+              valuable insights, tutorials, and news about web development,
+              programming languages, software engineering, and more.
+            </p>
+          </div>
+          <div class="col-lg-4 col-md-6"></div>
+          <div class="col-lg-4 col-md-12 my-4">
+            <h3>Connect with Us</h3>
+            <div class="footer-social-icons">
+              <a
+                target="_blank"
+                href="https://www.facebook.com/malikbilalakbar125"
+                ><i class="fab fa-facebook text-light mx-1"></i
+              ></a>
+              <a target="_blank" href="https://twitter.com/malikbilal_125"
+                ><i class="fab fa-twitter text-light mx-1"></i
+              ></a>
+              <a
+                target="_blank"
+                href="https://www.instagram.com/malikbilalakbar125"
+                ><i class="fab fa-instagram text-light mx-1"></i
+              ></a>
+              <a
+                target="_blank"
+                href="https://pk.linkedin.com/in/malikbilalakbar125"
+                ><i class="fab fa-linkedin text-light mx-1"></i
+              ></a>
+            </div>
+            <p class="mt-3">
+              Stay updated with our latest news and articles by following us on
+              social media.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom text-center pb-1 fixed">
+        <p>&copy; 2023 iCoder Insight. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      function validateForm(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Reset error messages
+        document.getElementById("errorMessage").textContent = "";
+        document.getElementById("nameError").textContent = "";
+        document.getElementById("emailError").textContent = "";
+        document.getElementById("queryError").textContent = "";
+        document.getElementById("messageError").textContent = "";
+        document.getElementById("memberError").textContent = "";
+
+        // Get form input values
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var query = document.getElementById("query").value;
+        var message = document.getElementById("message").value;
+        var member = document.querySelector('input[name="member"]:checked');
+
+        // Validate if any field is empty
+        if (name === "") {
+          document.getElementById("nameError").textContent =
+            "Please enter your name.";
+        }
+        if (email === "") {
+          document.getElementById("emailError").textContent =
+            "Please enter your email.";
+        }
+        if (query === "") {
+          document.getElementById("queryError").textContent =
+            "Please select a query type.";
+        }
+        if (message === "") {
+          document.getElementById("messageError").textContent =
+            "Please enter your message.";
+        }
+        if (member === null) {
+          document.getElementById("memberError").textContent =
+            "Please select whether you are a member or not.";
+        }
+
+        // If all fields are filled, show success modal
+        if (
+          name !== "" &&
+          email !== "" &&
+          query !== "" &&
+          message !== "" &&
+          member !== null
+        ) {
+          openModal();
+        }
+      }
+
+      function openModal() {
+        var modal = document.getElementById("successModal");
+        modal.style.display = "block";
+      }
+
+      function closeModal() {
+        var modal = document.getElementById("successModal");
+        modal.style.display = "none";
+        document.getElementById("myForm").reset();
+      }
+    </script>
+  </body>
+</html>
