@@ -414,9 +414,9 @@
         <div class="modal-body">
 
           <div class="container">
-            <div class="login-form">
+            <div class="signup-form">
               <h2>SignUp to iCoder Insight</h2>
-              <form id="signup-form">
+              <form id="signup-form" onsubmit="validateForm(event)">
                 <div class="form-group">
                   <label for="first-name">First Name:</label>
                   <input type="text" class="form-control" id="first-name" name="first-name" required>
@@ -462,18 +462,18 @@
                   <label for="dob">Date of Birth:</label>
                   <input type="date" id="dob" name="dob" required>
                 </div>
-
+        
                 <button type="submit" class="signup">Create Account</button>
               </form>
             </div>
           </div>
-
+        
           <div id="alert-popup" class="popup">
-            <div class="popup-content" <h3 class="popup-message">Your Form is Successfully Registered.</h3>
+            <div class="popup-content">
+              <h3 class="popup-message">Your Form is Successfully Registered.</h3>
               <span id="popup-close" class="popup-close">Close</span>
             </div>
           </div>
-
 
 
         </div>
@@ -685,7 +685,7 @@
 
 
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
     crossorigin="anonymous"></script>
 
@@ -718,22 +718,84 @@
     }
   </script>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-  <script>
-    // SignUp Form Show alert on form submit
-    $('#signup-form').submit(function (event) {
-      event.preventDefault();
-      $('#alert-popup').css('display', 'flex');
-      setTimeout(function () {
-        $('#alert-popup').css('display', 'none');
-      }, 3000);
-      this.reset();
-    });
+   <!-- // SignUp Form Show alert on form submit -->
 
-    // Close alert popup
-    $('#popup-close').click(function () {
-      $('#alert-popup').css('display', 'none');
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    function validateForm(event) {
+      // Prevent form submission
+      event.preventDefault();
+
+      // Validate form fields
+      var firstName = document.getElementById('first-name').value;
+      var lastName = document.getElementById('last-name').value;
+      var email = document.getElementById('email').value;
+      var confirmEmail = document.getElementById('confirm-email').value;
+      var password = document.getElementById('password').value;
+      var confirmPassword = document.getElementById('confirm-password').value;
+      var gender = document.querySelector('input[name="gender"]:checked');
+      var dob = document.getElementById('dob').value;
+
+      // Perform validation checks
+      if (firstName.trim() === '') {
+        alert('First Name is required.');
+        return;
+      }
+
+      if (lastName.trim() === '') {
+        alert('Last Name is required.');
+        return;
+      }
+
+      if (email.trim() === '') {
+        alert('Email is required.');
+        return;
+      }
+
+      if (confirmEmail.trim() === '') {
+        alert('Confirm Email is required.');
+        return;
+      }
+
+      if (email !== confirmEmail) {
+        alert('Email and Confirm Email must match.');
+        return;
+      }
+
+      if (password.trim() === '') {
+        alert('Password is required.');
+        return;
+      }
+
+      if (confirmPassword.trim() === '') {
+        alert('Confirm Password is required.');
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        alert('Password and Confirm Password must match.');
+        return;
+      }
+
+      if (!gender) {
+        alert('Gender is required.');
+        return;
+      }
+
+      if (dob.trim() === '') {
+        alert('Date of Birth is required.');
+        return;
+      }
+
+      // Show success message
+      var popup = document.getElementById('alert-popup');
+      popup.style.display = 'block';
+    }
+
+    // Close popup
+    document.getElementById('popup-close').addEventListener('click', function() {
+      var popup = document.getElementById('alert-popup');
+      popup.style.display = 'none';
     });
   </script>
 
